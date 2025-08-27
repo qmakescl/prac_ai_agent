@@ -123,6 +123,19 @@ workflow.add_edge("summarization", END)
 # Compile the graph
 app = workflow.compile()
 
+# Visualize the graph and save it as a PNG file
+# Note: This requires graphviz to be installed on your system.
+# For macOS: brew install graphviz
+# For Debian/Ubuntu: sudo apt-get install graphviz
+# Then, install the Python wrapper: uv pip install pygraphviz
+try:
+    image_data = app.get_graph().draw_mermaid_png()
+    with open("agent_workflow.png", "wb") as f:
+        f.write(image_data)
+    print("\nAgent workflow visualization saved as agent_workflow.png")
+except Exception as e:
+    print(f"\nCould not visualize the graph. Make sure graphviz and pygraphviz are installed. Error: {e}")
+
 # Define a sample text about Anthropic's MCP to test our agent
 sample_text = """
 Anthropic's MCP (Model Context Protocol) is an open-source powerhouse that lets your applications interact effortlessly with APIs across various systems.

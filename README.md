@@ -7,3 +7,4 @@
 - packages
     - langgraph langchain langchain-openai langchain-google-genai 
     - python-dotenv
+    - graphviz (with system install)
